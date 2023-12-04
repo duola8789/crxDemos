@@ -1,0 +1,27 @@
+{
+  "name": "MyCrxDemo",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "星言星言，有钱有闲",
+  "icons": {
+    "16": "src/assets/icon.png",
+    "32": "src/assets/icon.png",
+    "48": "src/assets/icon.png",
+    "128": "src/assets/icon.png"
+  },
+  "background": {
+    "service_worker": "src/scripts/background.js"
+  },
+  "permissions": ["storage", "activeTab", "scripting", "alarms", "downloads"],
+  "action": {
+    "default_popup": "src/pages/popup.html"
+  },
+  "content_scripts": [
+    { "matches": ["<all_urls>"], "js": ["src/utils/index.js"] },
+    { "matches": ["https://portal.qiniu.com/*"], "js": ["src/scripts/content-scripts/qiniu.js"] }
+  ],
+  "chrome_url_overrides": {
+    "history": "src/pages/overrides.html"
+  },
+  "options_page": "src/pages/options.html"
+}
